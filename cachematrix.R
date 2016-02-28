@@ -5,15 +5,15 @@
 ## Below is the function to create a matrix.
 
 makeCacheMatrix <- function(x = matrix()) {
-     inv <- NULL
+     inversion <- NULL
      set <- function(y) {
           x <<- y
-          inv <<- NULL
+          inversion <<- NULL
      }
      
      get <- function() x
-     setInverse <- function(inverse) inv <<- inverse
-     getInverse <- function() inv
+     setInverse <- function(inverse) inversion <<- inverse
+     getInverse <- function() inversion
      list(set = set,
           get = get,
           setInverse = setInverse,
@@ -24,13 +24,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ## This function creates the inversion of the original matrix.
 
 cacheSolve <- function(x, ...) {
-     inv <- x$getInverse()
+     inversion <- x$getInverse()
      if (!is.null(inv)) {
           message("Using Cached Data")
           return(inv)
      }
      mat <- x$get()
-     inv <- solve(mat, ...)
-     x$setInverse(inv)
-     inv
+     inversion <- solve(mat, ...)
+     x$setInverse(inversion)
+     inversion
 }
